@@ -1109,9 +1109,23 @@ Write down:
                 """
 **Questions**
 - Is missingness small or substantial?
+Missingness is relatively small. There are 1,100 missing cells out of 105,664 total cells, which is about 1.04% of the dataset.
+
 - Is it concentrated in one variable?
+Yes. Missing values are concentrated mainly in five variables:
+
+mileage: 221
+engine: 221
+max_power: 215
+torque: 222
+seats: 221
+
+
 - Could missingness itself be meaningful?
+Possibly. Missing vehicle specifications may be related to how some vehicles were listed or recorded. However, the dataset does not provide enough information to determine whether the missingness itself has a meaningful relationship with selling price.
+
 - Would dropping rows create bias?
+Dropping the rows would remove only a small portion of the dataset, but it could introduce bias if the missing values are more common for certain types or price ranges of vehicles. Therefore, handling the missing values carefully is preferable to automatically removing all incomplete rows.
 """
             )
 
@@ -1298,6 +1312,15 @@ Write down:
         st.text_area(
             "Write 2–4 sentences: What pattern do you see? "
             "What might explain it? What can you NOT conclude?",
+            value=(
+                "The data shows that newer cars generally have higher selling prices, "
+                "while cars with higher kilometres driven tend to have lower prices. "
+                "This may be explained by lower depreciation and higher demand for newer "
+                "vehicles, while higher usage can reduce a vehicle's market value. "
+                "However, we cannot conclude that vehicle age or kilometres driven alone "
+                "determine the selling price, because these relationships show correlation "
+                "rather than causation."
+            ),
             height=140,
         )
 
@@ -1541,12 +1564,32 @@ Write down:
         st.markdown(
             """
 1. Could the target or features contain bias?
+
+   Yes. Used-car prices can vary based on factors such as vehicle condition, location, brand reputation, and market demand that are not fully captured in the dataset.
+
 2. Could a model error disadvantage a person or group?
+
+   Yes. An inaccurate prediction could cause a buyer or seller to overestimate or underestimate a vehicle's value.
+
 3. Is the dataset representative?
+
+   The dataset may not represent every used-car market, region, vehicle type, or price range. Therefore, predictions are most appropriate for vehicles similar to those represented in the dataset.
+
 4. Are there privacy concerns?
+
+   The dataset contains vehicle-related information rather than sensitive personal information. However, datasets should still be checked for personally identifiable information before being used.
+
 5. Is the model explainable enough for the intended users?
+
+   Yes. Linear regression is relatively easy to interpret because its coefficients show how the selected vehicle characteristics are associated with selling price.
+
 6. What human oversight is needed?
+
+   A person should consider the prediction together with vehicle condition, maintenance history, location, market demand, and comparable listings before making a buying or selling decision.
+
 7. What should the model explicitly NOT be used for?
+
+   The model should not be used as the sole basis for buying, selling, financing, or valuing a vehicle. It should be treated as an estimation tool rather than a guaranteed market price.
 """
         )
 
@@ -1554,16 +1597,16 @@ Write down:
 
         checklist = pd.DataFrame(
             [
-                ["Problem is specific and understandable", False],
-                ["Data source is documented", False],
-                ["Variables are explained", False],
-                ["Missing values are inspected", False],
-                ["At least 2 useful visualizations are interpreted", False],
-                ["Target and features are justified", False],
-                ["Train/test separation is used", False],
-                ["Evaluation metrics are explained", False],
-                ["Limitations are discussed", False],
-                ["Ethical/responsible use is discussed", False],
+                ["Problem is specific and understandable", True],
+                ["Data source is documented", True],
+                ["Variables are explained", True],
+                ["Missing values are inspected", True],
+                ["At least 2 useful visualizations are interpreted", True],
+                ["Target and features are justified", True],
+                ["Train/test separation is used", True],
+                ["Evaluation metrics are explained", True],
+                ["Limitations are discussed", True],
+                ["Ethical/responsible use is discussed", True],
             ],
             columns=["Requirement", "Complete?"],
         )
