@@ -1109,23 +1109,23 @@ Write down:
                 """
 **Questions**
 - Is missingness small or substantial?
-Missingness is relatively small. There are 1,100 missing cells out of 105,664 total cells, which is about 1.04% of the dataset.
+\n Missingness is relatively small. There are 1,100 missing cells out of 105,664 total cells, which is about 1.04% of the dataset.
 
 - Is it concentrated in one variable?
-Yes. Missing values are concentrated mainly in five variables:
+\n Yes. Missing values are concentrated mainly in five variables:
 
-mileage: 221
-engine: 221
-max_power: 215
-torque: 222
-seats: 221
+\n mileage: 221
+\n engine: 221
+\n max_power: 215
+\n torque: 222
+\n seats: 221
 
 
 - Could missingness itself be meaningful?
-Possibly. Missing vehicle specifications may be related to how some vehicles were listed or recorded. However, the dataset does not provide enough information to determine whether the missingness itself has a meaningful relationship with selling price.
+\n Possibly. Missing vehicle specifications may be related to how some vehicles were listed or recorded. However, the dataset does not provide enough information to determine whether the missingness itself has a meaningful relationship with selling price.
 
 - Would dropping rows create bias?
-Dropping the rows would remove only a small portion of the dataset, but it could introduce bias if the missing values are more common for certain types or price ranges of vehicles. Therefore, handling the missing values carefully is preferable to automatically removing all incomplete rows.
+\n Dropping the rows would remove only a small portion of the dataset, but it could introduce bias if the missing values are more common for certain types or price ranges of vehicles. Therefore, handling the missing values carefully is preferable to automatically removing all incomplete rows.
 """
             )
 
@@ -1543,6 +1543,13 @@ Dropping the rows would remove only a small portion of the dataset, but it could
         st.subheader("Main findings")
         st.text_area(
             "Write your main findings here.",
+            value=(
+                "The analysis shows that newer cars generally have higher selling prices, "
+                "while cars with higher kilometres driven tend to have lower prices. "
+                "The dataset also shows that selling price varies considerably across "
+                "different vehicles, indicating that multiple vehicle characteristics "
+                "contribute to price differences."
+            ),
             height=150,
         )
 
@@ -1550,6 +1557,15 @@ Dropping the rows would remove only a small portion of the dataset, but it could
         st.text_area(
             "Explain what the evaluation metrics mean in the context "
             "of your problem.",
+            value=(
+                "The linear regression model achieved an R² of 0.905, meaning that "
+                "approximately 90.5% of the variation in used-car selling prices in "
+                "the test data is explained by the model. The MAE of ₹117,561 indicates "
+                "that the model's predictions differ from the actual selling prices "
+                "by about ₹117,561 on average. The RMSE of ₹249,328 is higher than the "
+                "MAE because larger prediction errors are penalized more heavily, "
+                "suggesting that some vehicles have substantially larger prediction errors."
+            ),
             height=150,
         )
 
